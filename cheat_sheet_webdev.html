@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Sheet Web Dev | Référence rapide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage-green: #6b9e87;
+            --cream: #faf8f3;
+            --coral: #e8a995;
+            --dark-text: #2a2a2a;
+            --light-text: #6a6a6a;
+        }
+
+        body {
+            font-family: 'Cambria', 'Georgia', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5f1eb 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--sage-green);
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--coral);
+        }
+
+        .card h2 {
+            color: var(--sage-green);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--coral);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--sage-green);
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .snippet {
+            background: #f4f1e8;
+            border-left: 3px solid var(--sage-green);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .label {
+            font-size: 0.8em;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .tip {
+            background: #fff9e6;
+            border-left: 3px solid #ffd700;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: var(--light-text);
+        }
+
+        .tip::before {
+            content: "💡 ";
+            font-weight: bold;
+        }
+
+        .warning {
+            background: #ffe8e8;
+            border-left: 3px solid #ff6b6b;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #c92a2a;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 2em;
+            color: var(--sage-green);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--coral);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--light-text);
+            border-top: 1px solid var(--coral);
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: var(--sage-green);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .cheat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        button {
+            background: var(--sage-green);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Cambria', serif;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: var(--coral);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Cheat Sheet Web Dev</h1>
+        <p class="subtitle">Référence rapide pour HTML, CSS et JavaScript</p>
+
+        <div class="cheat-grid">
+            <!-- HTML Section -->
+            <div class="section-title">HTML : Structure</div>
+
+            <div class="card">
+                <h2>Balises de base</h2>
+                <h3>Texte</h3>
+                <div class="snippet"><span class="label">HTML</span>&lt;h1&gt;Titre&lt;/h1&gt;
+&lt;p&gt;Paragraphe&lt;/p&gt;
+&lt;strong&gt;Gras&lt;/strong&gt;
+&lt;em&gt;Italique&lt;/em&gt;</div>
+
+                <h3>Listes</h3>
+                <div class="snippet"><span class="label">HTML</span>&lt;ul&gt;
+    &lt;li&gt;Élément 1&lt;/li&gt;
+    &lt;li&gt;Élément 2&lt;/li&gt;
+&lt;/ul&gt;</div>
+
+                <h3>Liens et boutons</h3>
+                <div class="snippet"><span class="label">HTML</span>&lt;a href="https://google.com"&gt;Lien&lt;/a&gt;
+&lt;button onclick="action()"&gt;Clic moi&lt;/button&gt;</div>
+            </div>
+
+            <div class="card">
+                <h2>Formulaires</h2>
+                <div class="snippet"><span class="label">HTML</span>&lt;input type="text" id="nom" placeholder="Ton nom"&gt;
+&lt;input type="number" id="calories"&gt;
+&lt;textarea id="notes"&gt;&lt;/textarea&gt;
+&lt;select id="categorie"&gt;
+    &lt;option&gt;Petit-déj&lt;/option&gt;
+    &lt;option&gt;Déjeuner&lt;/option&gt;
+&lt;/select&gt;</div>
+                <div class="tip">Utilise les type="" pour valider automatiquement : email, date, number, etc.</div>
+            </div>
+
+            <div class="card">
+                <h2>Structure de page</h2>
+                <div class="snippet"><span class="label">HTML</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ma page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Contenu --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            </div>
+
+            <!-- CSS Section -->
+            <div class="section-title">CSS : Style</div>
+
+            <div class="card">
+                <h2>Sélecteurs</h2>
+                <div class="snippet"><span class="label">CSS</span>/* Par balise */
+p { color: blue; }
+
+/* Par classe */
+.recette { background: white; }
+
+/* Par id */
+#titre { font-size: 2em; }
+
+/* Enfant direct */
+.recette > p { margin: 0; }
+
+/* Tous les enfants */
+.recette p { color: gray; }</div>
+            </div>
+
+            <div class="card">
+                <h2>Couleurs et fonts</h2>
+                <div class="snippet"><span class="label">CSS</span>color: #6b9e87;
+background: rgba(0, 0, 0, 0.1);
+font-size: 1.5em;
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+text-align: center;
+line-height: 1.5;</div>
+            </div>
+
+            <div class="card">
+                <h2>Spacing et Layout</h2>
+                <div class="snippet"><span class="label">CSS</span>padding: 20px;  /* Intérieur */
+margin: 10px;   /* Extérieur */
+border-radius: 8px;  /* Coins */
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+width: 100%;
+max-width: 800px;</div>
+            </div>
+
+            <div class="card">
+                <h2>Flexbox</h2>
+                <div class="snippet"><span class="label">CSS</span">.container {
+    display: flex;
+    justify-content: center;  /* Horizontal */
+    align-items: center;      /* Vertical */
+    gap: 20px;                /* Espace entre items */
+    flex-direction: column;    /* ou row (défaut) */
+}</div>
+                <div class="tip">Flexbox = le super pouvoir du CSS. Parfait pour les layouts</div>
+            </div>
+
+            <div class="card">
+                <h2>Grid</h2>
+                <div class="snippet"><span class="label">CSS</span>.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 colonnes égales */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}</div>
+                <div class="tip">Grid = pour les layouts complexes avec lignes et colonnes</div>
+            </div>
+
+            <!-- JavaScript Section -->
+            <div class="section-title">JavaScript : Logique</div>
+
+            <div class="card">
+                <h2>Variables et types</h2>
+                <div class="snippet"><span class="label">JavaScript</span>let nom = "Ketty";      // Texte
+let age = 49;           // Nombre
+let actif = true;       // Booléen
+let tableau = [1, 2, 3];  // Array
+let objet = { nom: "Flōra", calories: 250 };</div>
+                <div class="warning">var est ancien. Utilise let ou const à la place.</div>
+            </div>
+
+            <div class="card">
+                <h2>Fonctions</h2>
+                <div class="snippet"><span class="label">JavaScript</span">function addCalories(cal1, cal2) {
+    return cal1 + cal2;
+}
+
+// Fonction fléchée (moderne)
+const double = (x) => x * 2;
+
+// Appeler
+console.log(addCalories(100, 200));
+console.log(double(5));</div>
+            </div>
+
+            <div class="card">
+                <h2>Conditions</h2>
+                <div class="snippet"><span class="label">JavaScript</span">if (calories > 300) {
+    console.log("Riche");
+} else if (calories > 150) {
+    console.log("Moyen");
+} else {
+    console.log("Léger");
+}
+
+// Ternaire (court)
+let type = calories > 300 ? "Riche" : "Léger";</div>
+            </div>
+
+            <div class="card">
+                <h2>Boucles</h2>
+                <div class="snippet"><span class="label">JavaScript</span>// for classique
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// forEach (recommandé)
+recettes.forEach(recette => {
+    console.log(recette.nom);
+});
+
+// while
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}</div>
+            </div>
+
+            <div class="card">
+                <h2>Objets et Arrays</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Array
+let arr = [1, 2, 3];
+arr.push(4);        // Ajouter
+arr.pop();          // Retirer dernier
+arr.length;         // Longueur
+
+// Objet
+let recette = { nom: "Salade", cal: 250 };
+recette.nom;        // "Salade"
+recette["cal"];     // 250
+
+// Ajouter propriété
+recette.tags = ["vegan", "rapide"];</div>
+            </div>
+
+            <div class="card">
+                <h2>Filter, Map, Find</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Filter : garder certains éléments
+let legeres = recettes.filter(r => r.calories < 300);
+
+// Map : transformer chaque élément
+let noms = recettes.map(r => r.nom);
+
+// Find : trouver un élément
+let salade = recettes.find(r => r.nom === "Salade");
+
+// Some : vérifier si au moins 1 correspond
+let hasLight = recettes.some(r => r.calories < 200);</div>
+            </div>
+
+            <!-- DOM Section -->
+            <div class="section-title">DOM : Contrôler la page</div>
+
+            <div class="card">
+                <h2>Sélectionner des éléments</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Par id (un seul)
+let el = document.getElementById("monId");
+
+// Par classe (le premier)
+let el = document.querySelector(".recette");
+
+// Par classe (tous)
+let els = document.querySelectorAll(".recette");
+
+// Accéder aux enfants
+el.children;        // Éléments HTML directs
+el.firstChild;      // Premier enfant</div>
+            </div>
+
+            <div class="card">
+                <h2>Modifier le contenu</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Changer le texte
+el.textContent = "Nouveau texte";
+
+// Ajouter du HTML
+el.innerHTML = "&lt;p&gt;Contenu HTML&lt;/p&gt;";
+
+// Ajouter un élément
+let newDiv = document.createElement("div");
+el.appendChild(newDiv);
+
+// Supprimer un élément
+el.remove();</div>
+            </div>
+
+            <div class="card">
+                <h2>Modifier les classes CSS</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Ajouter classe
+el.classList.add("active");
+
+// Retirer classe
+el.classList.remove("active");
+
+// Toggle (ajouter si absent, retirer si présent)
+el.classList.toggle("active");
+
+// Vérifier
+el.classList.contains("active");</div>
+            </div>
+
+            <div class="card">
+                <h2>Événements</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Ajouter un événement
+button.addEventListener("click", function() {
+    console.log("Cliqué !");
+});
+
+// Avec une fonction fléchée
+button.addEventListener("click", () => {
+    console.log("Cliqué !");
+});
+
+// Événements courants
+// click, change, input, submit, mouseover, mouseout</div>
+                <div class="tip">Utilise addEventListener au lieu de onclick</div>
+            </div>
+
+            <!-- localStorage Section -->
+            <div class="section-title">localStorage : Données persistantes</div>
+
+            <div class="card">
+                <h2>Operations basiques</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Sauvegarder
+localStorage.setItem("clé", "valeur");
+
+// Récupérer
+let valeur = localStorage.getItem("clé");
+
+// Supprimer
+localStorage.removeItem("clé");
+
+// Vider tout
+localStorage.clear();
+
+// Longueur
+localStorage.length;</div>
+                <div class="warning">Ne fonctionne PAS dans les artifacts Claude.ai. Utilise sur GitHub Pages.</div>
+            </div>
+
+            <div class="card">
+                <h2>Exemples Flōra</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Sauvegarder les favoris
+localStorage.setItem("favoris_1", "true");
+localStorage.setItem("favoris_5", "true");
+
+// Vérifier si favori
+if (localStorage.getItem("favoris_1")) {
+    console.log("C'est un favori !");
+}
+
+// Récupérer tous les favoris
+let favoris = [];
+for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    if (key.startsWith("favoris_")) {
+        favoris.push(key);
+    }
+}</div>
+            </div>
+
+            <!-- API Section -->
+            <div class="section-title">API : Récupérer des données</div>
+
+            <div class="card">
+                <h2>Fetch basique</h2>
+                <div class="snippet"><span class="label">JavaScript</span">fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Faire quelque chose
+    })
+    .catch(error => {
+        console.error("Erreur:", error);
+    });</div>
+            </div>
+
+            <div class="card">
+                <h2>Fetch avec POST</h2>
+                <div class="snippet"><span class="label">JavaScript</span">fetch('https://api.example.com/save', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        nom: "Salade",
+        calories: 250
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data));</div>
+            </div>
+
+            <div class="card">
+                <h2>Chargement depuis JSON local</h2>
+                <div class="snippet"><span class="label">JavaScript</span">fetch('/data/recettes.json')
+    .then(response => response.json())
+    .then(recettes => {
+        recettes.forEach(r => {
+            console.log(r.nom);
+        });
+    });</div>
+                <div class="tip">Parfait pour charger les données de ton app au démarrage</div>
+            </div>
+
+            <!-- Debug Section -->
+            <div class="section-title">Débogage : Trouver les erreurs</div>
+
+            <div class="card">
+                <h2>Console</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Afficher une valeur
+console.log("Texte: " + variable);
+
+// Afficher un objet complet
+console.log(objet);
+
+// Afficher un tableau
+console.table(recettes);
+
+// Avertissement
+console.warn("Attention !");
+
+// Erreur
+console.error("Erreur grave !");</div>
+                <div class="tip">Ouvre la console avec F12 → Onglet "Console"</div>
+            </div>
+
+            <div class="card">
+                <h2>Debugger dans le code</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Pause l'exécution ici
+debugger;
+
+function recalculer() {
+    debugger;  // Pause quand elle est appelée
+    return calories * 1.5;
+}</div>
+                <div class="tip">Utilise F12 pour pas-à-pas dans le code. Puissant !</div>
+            </div>
+
+            <div class="card">
+                <h2>Erreurs courantes</h2>
+                <div class="snippet"><span class="label">Erreurs</span">// undefined : variable n'existe pas
+console.log(variable_inexistante);
+
+// null : valeur intentionnellement vide
+let x = null;
+
+// NaN : Not a Number
+let y = "texte" * 2;  // NaN
+
+// TypeError : type incorrect
+let arr = [1, 2, 3];
+arr.forEach(x => {});  // OK
+"texte".forEach(x => {});  // ERREUR</div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="section-title">Tips & Astuces</div>
+
+            <div class="card">
+                <h2>Raccourcis utiles</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Stringify (objet → JSON)
+let json = JSON.stringify(objet);
+
+// Parse (JSON → objet)
+let objet = JSON.parse(json);
+
+// String templates (plus lisible)
+let msg = `Bonjour ${nom}, tu as ${age} ans`;
+
+// Destructuring
+let { nom, calories } = recette;
+let [first, ...rest] = tableau;</div>
+            </div>
+
+            <div class="card">
+                <h2>Performance</h2>
+                <div class="snippet"><span class="label">JavaScript</span">// Cacher et montrer plusieurs éléments
+document.body.style.display = "none";
+// ... faire des modifications
+document.body.style.display = "block";
+
+// Utiliser requestAnimationFrame pour animations
+requestAnimationFrame(() => {
+    el.style.left = position + "px";
+});
+
+// Débounce (attendre avant d'agir)
+let timeout;
+input.addEventListener("input", () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        console.log(input.value);
+    }, 300);
+});</div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>📖 Référence complète</h3>
+            <p>Cette cheat sheet couvre 80% de ce que tu utiliseras au quotidien.</p>
+            <p>Pour la doc complète : <a href="#">MDN Web Docs</a> | <a href="#">W3Schools</a></p>
+            <p style="margin-top: 20px; font-style: italic;">
+                Sauvegarde cette page en favori ! 🌿
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

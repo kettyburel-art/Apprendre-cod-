@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre à Coder avec Flōra | Guide Complet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage-green: #6b9e87;
+            --cream: #faf8f3;
+            --coral: #e8a995;
+            --dark-text: #2a2a2a;
+            --light-text: #6a6a6a;
+            --accent-gold: #d4af37;
+        }
+
+        body {
+            font-family: 'Cambria', 'Georgia', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5f1eb 100%);
+            color: var(--dark-text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: var(--sage-green);
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: -1px;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            color: var(--light-text);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        header .highlight {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        /* Navigation */
+        nav.toc {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav.toc h2 {
+            font-size: 1.2em;
+            color: var(--sage-green);
+            margin-bottom: 15px;
+        }
+
+        nav.toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        nav.toc a {
+            display: block;
+            padding: 10px 15px;
+            background: var(--cream);
+            color: var(--sage-green);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        nav.toc a:hover {
+            background: var(--coral);
+            color: white;
+            border-left-color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: var(--sage-green);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--coral);
+        }
+
+        section h3 {
+            font-size: 1.4em;
+            color: var(--sage-green);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        section p {
+            margin-bottom: 15px;
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #f4f1e8;
+            border-left: 4px solid var(--sage-green);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block .label {
+            font-size: 0.75em;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .code-block code {
+            color: var(--dark-text);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Concept boxes */
+        .concept {
+            background: linear-gradient(135deg, rgba(107, 158, 135, 0.05) 0%, rgba(232, 169, 149, 0.05) 100%);
+            border: 1px solid var(--coral);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .concept .term {
+            font-weight: bold;
+            color: var(--sage-green);
+            font-size: 1.1em;
+        }
+
+        .concept .definition {
+            color: var(--light-text);
+            margin-top: 8px;
+        }
+
+        /* Flora example */
+        .flora-example {
+            background: linear-gradient(135deg, rgba(107, 158, 135, 0.08) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .flora-example .title {
+            font-weight: bold;
+            color: var(--sage-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flora-example .title::before {
+            content: "🌿";
+            font-size: 1.2em;
+        }
+
+        .flora-example .content {
+            color: var(--light-text);
+        }
+
+        /* Interactive elements */
+        .interactive {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px dashed var(--coral);
+        }
+
+        .interactive button {
+            background: var(--sage-green);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Cambria', serif;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .interactive button:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 169, 149, 0.3);
+        }
+
+        .interactive .output {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            min-height: 40px;
+            border: 1px solid var(--sage-green);
+        }
+
+        /* Vocabulary list */
+        .vocab {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .vocab-item {
+            background: var(--cream);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--coral);
+        }
+
+        .vocab-item .word {
+            font-weight: bold;
+            color: var(--sage-green);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .vocab-item .meaning {
+            color: var(--light-text);
+            font-size: 0.95em;
+        }
+
+        /* Progression bar */
+        .progress {
+            display: flex;
+            gap: 8px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .progress-item {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 15px;
+            background: var(--cream);
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .progress-item.completed {
+            background: var(--sage-green);
+            color: white;
+            border-color: var(--accent-gold);
+        }
+
+        .progress-item .num {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .progress-item .label {
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--light-text);
+            border-top: 1px solid var(--coral);
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: var(--sage-green);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sage-green);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: slideDown 0.6s ease-out;
+        }
+
+        section:nth-child(n) {
+            animation-delay: calc(0.1s * var(--index, 0));
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav.toc ul {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .vocab {
+                grid-template-columns: 1fr;
+            }
+
+            .progress {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Apprendre à Coder</h1>
+            <p class="subtitle">avec Flōra comme exemple concret</p>
+            <span class="highlight">Guide complet pour débutants</span>
+        </header>
+
+        <nav class="toc">
+            <h2>📚 Parcours d'apprentissage</h2>
+            <ul>
+                <li><a href="#fondamentaux">Fondamentaux</a></li>
+                <li><a href="#html">HTML : La structure</a></li>
+                <li><a href="#css">CSS : La mise en forme</a></li>
+                <li><a href="#javascript">JavaScript : L'interactivité</a></li>
+                <li><a href="#dom">DOM : Manipuler la page</a></li>
+                <li><a href="#localStorage">localStorage : Mémoriser</a></li>
+                <li><a href="#api">API : Communiquer</a></li>
+                <li><a href="#projet">Projet pratique</a></li>
+            </ul>
+        </nav>
+
+        <!-- Section 1: Fondamentaux -->
+        <section id="fondamentaux">
+            <h2>🎯 Les Fondamentaux : Comprendre l'Architecture Web</h2>
+            
+            <p>Avant de coder, comprends comment fonctionne une page web. Flōra en est un excellent exemple !</p>
+
+            <h3>Les 3 piliers du web</h3>
+            
+            <div class="concept">
+                <div class="term">1. HTML (HyperText Markup Language)</div>
+                <div class="definition">La structure et le contenu. C'est comme les murs d'une maison.</div>
+            </div>
+
+            <div class="concept">
+                <div class="term">2. CSS (Cascading Style Sheets)</div>
+                <div class="definition">L'apparence et le style. C'est comme la peinture et la décoration.</div>
+            </div>
+
+            <div class="concept">
+                <div class="term">3. JavaScript</div>
+                <div class="definition">L'interactivité et la logique. C'est comme l'électricité qui fait fonctionner la maison.</div>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Flōra en 3 piliers</div>
+                <div class="content">
+                    <strong>HTML :</strong> Les recettes, les boutons, les champs à remplir<br>
+                    <strong>CSS :</strong> Les couleurs apaisantes (vert sage, coral), les polices, les animations<br>
+                    <strong>JavaScript :</strong> Chercher une recette, compter les calories, sauvegarder un repas
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-item completed">
+                    <div class="num">✓</div>
+                    <div class="label">Concept compris</div>
+                </div>
+                <div class="progress-item">
+                    <div class="num">→</div>
+                    <div class="label">Prêt pour HTML ?</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: HTML -->
+        <section id="html">
+            <h2>🏗️ HTML : Construire la structure</h2>
+            
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>HTML c'est un langage de <strong>balises</strong> qui structurent le contenu. Chaque balise dit au navigateur : « Ici, c'est un titre », « Ici, c'est un bouton », etc.</p>
+
+            <h3>Les balises essentielles</h3>
+
+            <div class="vocab">
+                <div class="vocab-item">
+                    <div class="word">&lt;h1&gt; à &lt;h6&gt;</div>
+                    <div class="meaning">Titres (h1 = plus gros, h6 = plus petit)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">&lt;p&gt;</div>
+                    <div class="meaning">Paragraphe de texte</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">&lt;button&gt;</div>
+                    <div class="meaning">Un bouton cliquable</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">&lt;input&gt;</div>
+                    <div class="meaning">Champ pour saisir du texte</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">&lt;div&gt;</div>
+                    <div class="meaning">Conteneur (zone de regroupement)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">&lt;ul&gt;, &lt;li&gt;</div>
+                    <div class="meaning">Liste à puces</div>
+                </div>
+            </div>
+
+            <h3>Un exemple : Flōra</h3>
+            <p>Voici comment Flōra affiche une recette :</p>
+
+            <div class="code-block">
+                <span class="label">HTML</span>
+                <code>&lt;div class="recette"&gt;
+    &lt;h2&gt;Salade Pois Chiches Basilic&lt;/h2&gt;
+    &lt;p&gt;250 cal | Anti-inflammatoire&lt;/p&gt;
+    &lt;button onclick="ajouterAuRepas()"&gt;Ajouter au repas&lt;/button&gt;
+&lt;/div&gt;</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Explication mot par mot</div>
+                <div class="content">
+                    <strong>&lt;div class="recette"&gt;</strong> = On crée une zone pour la recette<br>
+                    <strong>&lt;h2&gt;</strong> = Le nom de la recette (titre)<br>
+                    <strong>&lt;p&gt;</strong> = Les infos nutritionnelles<br>
+                    <strong>&lt;button&gt;</strong> = Le bouton pour l'ajouter au repas<br>
+                    <strong>onclick="ajouterAuRepas()"</strong> = Quand on clique, ça exécute la fonction JavaScript ajouterAuRepas()
+                </div>
+            </div>
+
+            <h3>Structure minimale d'une page HTML</h3>
+
+            <div class="code-block">
+                <span class="label">HTML Structure</span>
+                <code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Flōra - Recettes Anti-inflammatoires&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bienvenue dans Flōra&lt;/h1&gt;
+    &lt;p&gt;Trouvez des recettes saines.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+            </div>
+        </section>
+
+        <!-- Section 3: CSS -->
+        <section id="css">
+            <h2>🎨 CSS : Faire briller la page</h2>
+
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>CSS te permet de colorier, changer la taille, positionner les éléments HTML. C'est l'art du web !</p>
+
+            <h3>Comment ça marche ?</h3>
+            <p>Tu <strong>sélectionnes</strong> un élément HTML et tu lui <strong>appliques des propriétés</strong>.</p>
+
+            <div class="code-block">
+                <span class="label">CSS Syntaxe</span>
+                <code>sélecteur {
+    propriété: valeur;
+    propriété: valeur;
+}</code>
+            </div>
+
+            <h3>Les propriétés essentielles</h3>
+
+            <div class="vocab">
+                <div class="vocab-item">
+                    <div class="word">color</div>
+                    <div class="meaning">Couleur du texte</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">background</div>
+                    <div class="meaning">Couleur de fond</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">font-size</div>
+                    <div class="meaning">Taille du texte (px, em, %)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">padding</div>
+                    <div class="meaning">Espace intérieur</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">margin</div>
+                    <div class="meaning">Espace extérieur</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">border-radius</div>
+                    <div class="meaning">Coins arrondis</div>
+                </div>
+            </div>
+
+            <h3>Exemple Flōra : Styliser une recette</h3>
+
+            <div class="code-block">
+                <span class="label">CSS</span>
+                <code>.recette {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: #6b9e87;
+}
+
+.recette h2 {
+    font-size: 1.5em;
+    color: #6b9e87;
+}</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Ce que ça fait</div>
+                <div class="content">
+                    La recette a un fond blanc, de la marge intérieure (padding), des coins arrondis, et une légère ombre pour la profondeur. Le texte est en vert sage (couleur Flōra).
+                </div>
+            </div>
+
+            <h3>3 façons de sélectionner un élément</h3>
+
+            <div class="code-block">
+                <span class="label">CSS Sélecteurs</span>
+                <code>/* Par balise */
+p { color: blue; }
+
+/* Par classe */
+.recette { background: white; }
+
+/* Par id (unique) */
+#boutonsauvegarder { background: green; }</code>
+            </div>
+        </section>
+
+        <!-- Section 4: JavaScript -->
+        <section id="javascript">
+            <h2>⚡ JavaScript : Ajouter l'interactivité</h2>
+
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>JavaScript c'est un <strong>langage de programmation</strong> qui permet à ta page de FAIRE des choses : réagir aux clics, calculer, sauvegarder, etc.</p>
+
+            <h3>Les 5 concepts clés</h3>
+
+            <div class="concept">
+                <div class="term">1. Variables</div>
+                <div class="definition">Des boîtes pour ranger les données (texte, nombre, objet).</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Variables</span>
+                <code>let nom = "Flōra";
+let calories = 250;
+let recettes = ["Salade", "Soupe", "Gratin"];</code>
+            </div>
+
+            <div class="concept">
+                <div class="term">2. Fonctions</div>
+                <div class="definition">Un bloc de code réutilisable qui fait une action précise.</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Fonction</span>
+                <code>function ajouterAuRepas() {
+    console.log("Recette ajoutée !");
+}
+
+// Appeler la fonction
+ajouterAuRepas();</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Dans Flōra</div>
+                <div class="content">
+                    Quand tu cliques sur "Ajouter au repas", JavaScript appelle une fonction qui sauvegarde la recette dans ton repas du jour.
+                </div>
+            </div>
+
+            <div class="concept">
+                <div class="term">3. Conditions (if/else)</div>
+                <div class="definition">Faire une action SI quelque chose est vrai.</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Conditions</span>
+                <code>if (calories > 300) {
+    console.log("Recette riche en calories");
+} else {
+    console.log("Recette légère");
+}</code>
+            </div>
+
+            <div class="concept">
+                <div class="term">4. Boucles (for, while)</div>
+                <div class="definition">Répéter une action plusieurs fois.</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Boucle</span>
+                <code>for (let i = 0; i &lt; recettes.length; i++) {
+    console.log("Recette: " + recettes[i]);
+}
+// Affiche chaque recette une par une</code>
+            </div>
+
+            <div class="concept">
+                <div class="term">5. Objets</div>
+                <div class="definition">Regrouper plusieurs informations liées (comme une recette avec ses infos).</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Objet</span>
+                <code>let recette = {
+    nom: "Salade Pois Chiches",
+    calories: 250,
+    duree: 15,
+    tags: ["vegan", "rapide", "santé"]
+};
+
+console.log(recette.nom);
+console.log(recette.calories);</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Dans Flōra, chaque recette est un objet</div>
+                <div class="content">
+                    Avec le nom, les calories, les ingrédients, les étapes, les tags. JavaScript parcourt les recettes avec une boucle et les affiche à l'écran.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: DOM -->
+        <section id="dom">
+            <h2>🖱️ DOM : Contrôler la page</h2>
+
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>Le <strong>DOM (Document Object Model)</strong>, c'est la représentation en arbre de ta page HTML. JavaScript peut la modifier en temps réel !</p>
+
+            <h3>Les opérations essentielles</h3>
+
+            <div class="concept">
+                <div class="term">Sélectionner un élément</div>
+                <div class="definition">Accéder à un élément HTML pour le modifier.</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Sélectionner</span>
+                <code>// Par id
+let bouton = document.getElementById("monBouton");
+
+// Par classe
+let recettes = document.querySelectorAll(".recette");
+
+// Par balise
+let tous_les_paragraphes = document.querySelectorAll("p");</code>
+            </div>
+
+            <div class="concept">
+                <div class="term">Modifier le contenu</div>
+                <div class="definition">Changer le texte ou le HTML d'un élément.</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Modifier le contenu</span>
+                <code>// Changer le texte
+document.getElementById("titre").textContent = "Mes recettes";
+
+// Ajouter du HTML
+document.getElementById("container").innerHTML = "&lt;p&gt;Nouvelle recette!&lt;/p&gt;";</code>
+            </div>
+
+            <div class="concept">
+                <div class="term">Ajouter des événements</div>
+                <div class="definition">Faire quelque chose quand l'utilisateur agit (clic, saisie, etc.).</div>
+            </div>
+
+            <div class="code-block">
+                <span class="label">Événements</span>
+                <code>let bouton = document.getElementById("valider");
+
+bouton.addEventListener("click", function() {
+    console.log("Le bouton a été cliqué !");
+    // Faire quelque chose
+});</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Dans Flōra</div>
+                <div class="content">
+                    Quand tu cliques sur une recette, le DOM change : les détails s'affichent, les boutons se mettent à jour. Tout ça sans recharger la page !
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: localStorage -->
+        <section id="localStorage">
+            <h2>💾 localStorage : Sauvegarder les données</h2>
+
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>localStorage permet au navigateur de <strong>mémoriser des données</strong> même après fermeture de la page. C'est comme une petite base de données locale.</p>
+
+            <div class="concept">
+                <div class="term">⚠️ Important pour Flōra (Claude Artifacts)</div>
+                <div class="definition">localStorage ne fonctionne PAS dans les artifacts Claude.ai. Mais tu peux l'utiliser dans une vraie app déployée sur GitHub Pages !</div>
+            </div>
+
+            <h3>Les opérations essentielles</h3>
+
+            <div class="code-block">
+                <span class="label">localStorage Syntaxe</span>
+                <code>// Sauvegarder
+localStorage.setItem("clé", "valeur");
+
+// Récupérer
+let valeur = localStorage.getItem("clé");
+
+// Supprimer
+localStorage.removeItem("clé");
+
+// Vider tout
+localStorage.clear();</code>
+            </div>
+
+            <div class="flora-example">
+                <div class="title">Cas d'usage dans Flōra (sur GitHub Pages)</div>
+                <div class="content">
+                    Sauvegarder les recettes favorites, le repas du jour, les préférences de l'utilisateur. Tout reste quand tu reviens demain !
+                </div>
+            </div>
+
+            <h3>Exemple pratique</h3>
+
+            <div class="code-block">
+                <span class="label">localStorage Flōra</span>
+                <code>// Sauvegarder une recette favorite
+function ajouterFavoris(recetteId) {
+    localStorage.setItem("favoris_" + recetteId, "true");
+}
+
+// Vérifier si une recette est favorite
+function estFavoris(recetteId) {
+    return localStorage.getItem("favoris_" + recetteId) === "true";
+}
+
+// Afficher les favoris
+let recettes_fav = [];
+for (let i = 0; i &lt; localStorage.length; i++) {
+    if (localStorage.key(i).startsWith("favoris_")) {
+        recettes_fav.push(localStorage.key(i));
+    }
+}</code>
+            </div>
+        </section>
+
+        <!-- Section 7: API -->
+        <section id="api">
+            <h2>🌐 API : Communiquer avec d'autres services</h2>
+
+            <h3>Qu'est-ce que c'est vraiment ?</h3>
+            <p>Une <strong>API (Application Programming Interface)</strong> permet à ta page de communiquer avec d'autres serveurs pour récupérer ou envoyer des données.</p>
+
+            <div class="concept">
+                <div class="term">Exemple simple</div>
+                <div class="definition">Flōra pourrait utiliser une API pour récupérer les infos nutritionnelles depuis une base de données.</div>
+            </div>
+
+            <h3>Comment faire un appel API avec fetch()</h3>
+
+            <div class="code-block">
+                <span class="label">API fetch() basique</span>
+                <code>// Récupérer des données
+fetch('https://api.exemple.com/recettes')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Afficher les recettes
+    });
+</code>
+            </div>
+
+            <h3>Explication mot par mot</h3>
+            <div class="flora-example">
+                <div class="title">Décortiquer fetch()</div>
+                <div class="content">
+                    <strong>fetch()</strong> = Envoyer une requête au serveur<br>
+                    <strong>.then()</strong> = Attendre la réponse, puis faire quelque chose<br>
+                    <strong>response.json()</strong> = Convertir la réponse en JavaScript<br>
+                    <strong>data</strong> = Les données reçues (recettes, utilisateurs, etc.)
+                </div>
+            </div>
+
+            <h3>Exemple : Flōra récupère les recettes</h3>
+
+            <div class="code-block">
+                <span class="label">API Flōra</span>
+                <code>function chargerRecettes() {
+    fetch('/data/recettes.json')
+        .then(response => response.json())
+        .then(recettes => {
+            // Afficher chaque recette
+            recettes.forEach(recette => {
+                afficherRecette(recette);
+            });
+        });
+}
+
+function afficherRecette(recette) {
+    let html = `
+        &lt;div class="recette"&gt;
+            &lt;h2&gt;${recette.nom}&lt;/h2&gt;
+            &lt;p&gt;${recette.calories} cal&lt;/p&gt;
+        &lt;/div&gt;
+    `;
+    document.getElementById("recettes").innerHTML += html;
+}</code>
+            </div>
+        </section>
+
+        <!-- Section 8: Projet pratique -->
+        <section id="projet">
+            <h2>🚀 Ton premier projet : Mini Flōra</h2>
+
+            <h3>Défi : Créer une petite app de recettes</h3>
+            <p>Combine tout ce que tu as appris pour créer une app simple avec HTML, CSS et JavaScript !</p>
+
+            <h3>Ce qu'elle va faire :</h3>
+            <ul style="color: var(--light-text); margin-left: 20px;">
+                <li>Afficher une liste de 3 recettes</li>
+                <li>Permettre de cliquer sur une recette pour voir les détails</li>
+                <li>Ajouter une recette à "Mon repas" (un tableau)</li>
+                <li>Afficher le total de calories</li>
+            </ul>
+
+            <h3>Étape 1 : La structure HTML</h3>
+
+            <div class="code-block">
+                <span class="label">HTML - Structure</span>
+                <code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;title&gt;Mini Flōra&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;🌿 Mini Flōra&lt;/h1&gt;
+    
+    &lt;div id="recettes"&gt;&lt;/div&gt;
+    
+    &lt;h2&gt;Mon Repas&lt;/h2&gt;
+    &lt;div id="mon-repas"&gt;&lt;/div&gt;
+    &lt;p&gt;Total : &lt;span id="total-calories"&gt;0&lt;/span&gt; cal&lt;/p&gt;
+    
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+            </div>
+
+            <h3>Étape 2 : Le style CSS</h3>
+
+            <div class="code-block">
+                <span class="label">CSS</span>
+                <code>body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #faf8f3;
+}
+
+.recette {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.recette:hover {
+    border-color: #6b9e87;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #6b9e87;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}</code>
+            </div>
+
+            <h3>Étape 3 : La logique JavaScript</h3>
+
+            <div class="code-block">
+                <span class="label">JavaScript - app.js</span>
+                <code>// Les données
+const recettes = [
+    { id: 1, nom: "Salade Pois Chiches", calories: 250 },
+    { id: 2, nom: "Saumon Vapeur", calories: 300 },
+    { id: 3, nom: "Soupe Poireaux", calories: 180 }
+];
+
+let monRepas = [];
+
+// Au démarrage, afficher les recettes
+function init() {
+    recettes.forEach(recette => {
+        let html = `
+            &lt;div class="recette" onclick="afficherDetails(${recette.id})"&gt;
+                &lt;h3&gt;${recette.nom}&lt;/h3&gt;
+                &lt;p&gt;${recette.calories} cal&lt;/p&gt;
+                &lt;button onclick="ajouterRepas(${recette.id}); event.stopPropagation();"&gt;
+                    Ajouter
+                &lt;/button&gt;
+            &lt;/div&gt;
+        `;
+        document.getElementById("recettes").innerHTML += html;
+    });
+}
+
+function ajouterRepas(id) {
+    let recette = recettes.find(r => r.id === id);
+    monRepas.push(recette);
+    mettreAJourRepas();
+}
+
+function mettreAJourRepas() {
+    let html = "";
+    let total = 0;
+    
+    monRepas.forEach((recette, index) => {
+        html += `
+            &lt;p&gt;${recette.nom} - ${recette.calories} cal
+                &lt;button onclick="supprimerRepas(${index})"&gt;✕&lt;/button&gt;
+            &lt;/p&gt;
+        `;
+        total += recette.calories;
+    });
+    
+    document.getElementById("mon-repas").innerHTML = html;
+    document.getElementById("total-calories").textContent = total;
+}
+
+function supprimerRepas(index) {
+    monRepas.splice(index, 1);
+    mettreAJourRepas();
+}
+
+// Lancer l'app
+init();</code>
+            </div>
+
+            <div class="interactive">
+                <h3>🎉 Ton app fonctionne !</h3>
+                <p>Essaie le bouton ci-dessous pour voir le code en action :</p>
+                <button onclick="afficherExempleWORKING()">▶️ Voir Mini Flōra en action</button>
+                <div class="output" id="demo-output" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <h3>🎓 Prochaines étapes</h3>
+            <p>Maintenant que tu as les bases, tu peux :</p>
+            <ul style="color: var(--light-text); text-align: left; display: inline-block; margin: 20px 0;">
+                <li>Créer une app personnelle (liste de courses, budget, etc.)</li>
+                <li>Déployer sur GitHub Pages (gratuit !)</li>
+                <li>Apprendre React ou Vue pour les apps plus complexes</li>
+                <li>Explorer les APIs publiques (météo, films, news, etc.)</li>
+            </ul>
+            <p style="margin-top: 30px;">
+                <strong>Ressources :</strong> <br>
+                <a href="#">MDN Web Docs (documentation)</a> | 
+                <a href="#">freeCodeCamp (vidéos)</a> | 
+                <a href="#">Ton propre GitHub Pages</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function afficherExempleWORKING() {
+            const output = document.getElementById("demo-output");
+            output.style.display = "block";
+            
+            const recettes = [
+                { nom: "Salade Pois Chiches", calories: 250 },
+                { nom: "Saumon Vapeur", calories: 300 },
+                { nom: "Soupe Poireaux", calories: 180 }
+            ];
+            
+            let html = "<strong>Recettes disponibles :</strong><br>";
+            recettes.forEach((r, i) => {
+                html += `<p>${i+1}. ${r.nom} (${r.calories} cal) <button style="padding:4px 8px; font-size:0.8em;">Ajouter</button></p>`;
+            });
+            
+            output.innerHTML = html;
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

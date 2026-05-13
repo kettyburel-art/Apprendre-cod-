@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan d'apprentissage personnalisé | 12 semaines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage-green: #6b9e87;
+            --cream: #faf8f3;
+            --coral: #e8a995;
+            --dark-text: #2a2a2a;
+            --light-text: #6a6a6a;
+            --gold: #d4af37;
+        }
+
+        body {
+            font-family: 'Cambria', 'Georgia', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5f1eb 100%);
+            color: var(--dark-text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--sage-green);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--light-text);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--coral);
+        }
+
+        .week {
+            margin-bottom: 40px;
+            padding-left: 90px;
+            position: relative;
+        }
+
+        .week::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 8px;
+            width: 28px;
+            height: 28px;
+            background: var(--sage-green);
+            border: 3px solid var(--cream);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--coral);
+        }
+
+        .week.completed::before {
+            background: var(--coral);
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .week h2 {
+            color: var(--sage-green);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .week .theme {
+            color: var(--coral);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .week-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--coral);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: var(--sage-green);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .section li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--light-text);
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--coral);
+            font-weight: bold;
+        }
+
+        .project {
+            background: #f9f6f0;
+            border-left: 4px solid var(--gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .project h4 {
+            color: var(--sage-green);
+            margin-bottom: 8px;
+        }
+
+        .project p {
+            font-size: 0.95em;
+            color: var(--light-text);
+            margin-bottom: 8px;
+        }
+
+        .skills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .skill {
+            background: var(--cream);
+            color: var(--sage-green);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+
+        .tip {
+            background: #fff9e6;
+            border-left: 3px solid var(--gold);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 6px;
+            color: #856404;
+        }
+
+        .tip::before {
+            content: '💡 ';
+            font-weight: bold;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .difficulty.easy {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .difficulty.medium {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+
+        .difficulty.hard {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .summary {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .summary h2 {
+            color: var(--sage-green);
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: var(--cream);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--coral);
+        }
+
+        .stat .number {
+            font-size: 2em;
+            color: var(--sage-green);
+            font-weight: bold;
+        }
+
+        .stat .label {
+            color: var(--light-text);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--light-text);
+            border-top: 1px solid var(--coral);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .week {
+                padding-left: 60px;
+            }
+            .timeline::before {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Ton Plan d'Apprentissage</h1>
+            <p class="subtitle">De zéro à développeuse web en 12 semaines</p>
+            <p style="color: var(--light-text); margin-bottom: 10px;">
+                Conçu spécialement pour toi, avec Flōra comme projet fil rouge
+            </p>
+            <span class="badge">🎯 Progression structurée</span>
+        </header>
+
+        <div class="timeline">
+            <!-- SEMAINE 1-2 -->
+            <div class="week">
+                <h2>Semaines 1-2</h2>
+                <div class="theme">Fondamentaux : Construire tes bases</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>Les 3 piliers du web (HTML, CSS, JavaScript)</li>
+                            <li>Comment fonctionne un navigateur</li>
+                            <li>Structure d'une page HTML</li>
+                            <li>Balises essentielles</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Créer ta première page HTML (Hello World)</li>
+                            <li>Ajouter du texte, des titres, des paragraphes</li>
+                            <li>Créer une liste de courses en HTML</li>
+                            <li>Lire le guide complet (Sections 1-3)</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>📁 Petit projet : Ma première page</h4>
+                        <p>Crée une page "À propos de Flōra" avec :
+                            - 1 titre principal
+                            - 3 paragraphes de description
+                            - 1 liste de recettes
+                        </p>
+                        <div class="skills">
+                            <span class="skill">HTML</span>
+                            <span class="skill">Structure</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        Ne te presse pas. Comprendre correctement les bases te fera gagner des heures plus tard !
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 3-4 -->
+            <div class="week">
+                <h2>Semaines 3-4</h2>
+                <div class="theme">CSS : Rendre ta page belle</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>Sélecteurs CSS (par balise, classe, ID)</li>
+                            <li>Propriétés essentielles (color, font, padding, margin)</li>
+                            <li>Box model (padding, margin, border)</li>
+                            <li>Flexbox et Grid (introduction)</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Styliser ta page "À propos de Flōra"</li>
+                            <li>Créer des classes CSS réutilisables</li>
+                            <li>Utiliser les couleurs Flōra (vert sage #6b9e87, coral #e8a995)</li>
+                            <li>Rendre la page responsive (mobile-friendly)</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>🎨 Projet : Landing page Flōra</h4>
+                        <p>Crée une page d'accueil Flōra avec :
+                            - Header avec logo et titre
+                            - Section "À propos" stylisée
+                            - Liste de recettes avec cartes stylisées
+                            - Footer
+                        </p>
+                        <div class="skills">
+                            <span class="skill">CSS</span>
+                            <span class="skill">Layout</span>
+                            <span class="skill">Responsive</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        Utilise Flexbox pour l'alignement. C'est plus facile que de maîtriser Grid au début.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 5-6 -->
+            <div class="week">
+                <h2>Semaines 5-6</h2>
+                <div class="theme">JavaScript : Ajouter l'interactivité</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>Variables et types (let, const, number, string, boolean)</li>
+                            <li>Fonctions et comment les appeler</li>
+                            <li>Conditions (if/else)</li>
+                            <li>Boucles (forEach est suffisant pour débuter)</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Créer des variables pour les recettes</li>
+                            <li>Écrire une fonction qui calcule les calories totales</li>
+                            <li>Afficher/cacher des éléments avec JavaScript</li>
+                            <li>Utiliser console.log() pour déboguer</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>⚡ Projet : Calculatrice de calories</h4>
+                        <p>Une app simple qui :
+                            - Affiche 3 recettes avec leurs calories
+                            - Permet de cliquer pour voir les détails
+                            - Calcule le total de calories
+                            - Affiche "léger" si < 300 cal, "riche" sinon
+                        </p>
+                        <div class="skills">
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">Variables</span>
+                            <span class="skill">Conditions</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        console.log() est ton meilleur ami. Ajoute-le partout pour comprendre ce qui se passe.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 7-8 -->
+            <div class="week">
+                <h2>Semaines 7-8</h2>
+                <div class="theme">DOM : Maîtriser la page</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>Le DOM (Document Object Model)</li>
+                            <li>Sélectionner des éléments (getElementById, querySelector)</li>
+                            <li>Modifier le contenu (textContent, innerHTML)</li>
+                            <li>Ajouter des événements (addEventListener)</li>
+                            <li>Ajouter/retirer des classes CSS</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Changer le texte d'une recette en cliquant dessus</li>
+                            <li>Ajouter une recette à "Mon repas" dynamiquement</li>
+                            <li>Supprimer une recette de "Mon repas"</li>
+                            <li>Mettre à jour l'affichage en temps réel</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>🖱️ Projet : Mini Flōra interactive</h4>
+                        <p>Le projet du guide ! Une app fonctionnelle avec :
+                            - Liste de recettes cliquables
+                            - Ajouter au repas
+                            - Supprimer du repas
+                            - Total de calories mise à jour
+                        </p>
+                        <div class="skills">
+                            <span class="skill">DOM</span>
+                            <span class="skill">Événements</span>
+                            <span class="skill">Interactivité</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        C'est là que ta page devient vraiment vivante. Prends du temps pour bien comprendre le DOM.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 9-10 -->
+            <div class="week">
+                <h2>Semaines 9-10</h2>
+                <div class="theme">localStorage & API : Aller plus loin</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>localStorage pour sauvegarder les données</li>
+                            <li>JSON (format de données)</li>
+                            <li>Fetch API pour récupérer des données</li>
+                            <li>Promises et .then()</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Sauvegarder les favoris dans localStorage</li>
+                            <li>Récupérer les favoris au rechargement</li>
+                            <li>Charger les recettes depuis un fichier JSON</li>
+                            <li>Afficher un message de chargement pendant que les données arrivent</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>💾 Projet : Flōra avec favoris</h4>
+                        <p>Améliore ton Mini Flōra :
+                            - Ajouter/retirer des favoris (cœur)
+                            - Sauvegarder dans localStorage
+                            - Charger les recettes depuis data.json
+                            - Les favoris persistent après rechargement
+                        </p>
+                        <div class="skills">
+                            <span class="skill">localStorage</span>
+                            <span class="skill">JSON</span>
+                            <span class="skill">Fetch</span>
+                        </div>
+                    </div>
+
+                    <div class="warning" style="border-left-color: var(--coral);">
+                        ⚠️ localStorage ne fonctionne pas dans les artifacts Claude. Tu peux l'utiliser dans une vraie app sur GitHub Pages.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 11 -->
+            <div class="week">
+                <h2>Semaine 11</h2>
+                <div class="theme">Débogage & Bonnes pratiques</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 Concepts à comprendre</h3>
+                        <ul>
+                            <li>Utiliser la console du navigateur (F12)</li>
+                            <li>Identifier les types d'erreurs</li>
+                            <li>Écrire du code propre (noms explicites, commentaires)</li>
+                            <li>DRY : Don't Repeat Yourself</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>💻 À faire</h3>
+                        <ul>
+                            <li>Nettoyer ton code Mini Flōra</li>
+                            <li>Ajouter des commentaires pertinents</li>
+                            <li>Refactoriser les fonctions répétitives</li>
+                            <li>Tester avec la console</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>✅ Projet : Code audit</h4>
+                        <p>Revise ton code Mini Flōra et :
+                            - Améliore les noms de variables
+                            - Réduis la duplication
+                            - Ajoute des commentaires clairs
+                            - Vérifie que tout fonctionne
+                        </p>
+                        <div class="skills">
+                            <span class="skill">Débogage</span>
+                            <span class="skill">Qualité de code</span>
+                            <span class="skill">Refactoring</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        Le code qui fonctionne est bien. Le code propre est mieux. Très mieux.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMAINE 12 -->
+            <div class="week">
+                <h2>Semaine 12</h2>
+                <div class="theme">Ton propre projet ! 🎉</div>
+                <div class="week-content">
+                    <div class="section">
+                        <h3>📚 C'est l'heure de briller !</h3>
+                        <p style="color: var(--light-text); margin-bottom: 15px;">
+                            Tu as maintenant TOUS les outils pour créer une véritable app web. À toi de choisir !
+                        </p>
+                    </div>
+
+                    <div class="section">
+                        <h3>💡 Idées de projets personnels</h3>
+                        <ul>
+                            <li><strong>Liste de courses :</strong> Ajouter/retirer items, sauvegarder</li>
+                            <li><strong>Budget perso :</strong> Suivre les dépenses, voir les stats</li>
+                            <li><strong>Tracker de douleur :</strong> Pour suivre tes SJSR</li>
+                            <li><strong>Planner de repas :</strong> Planifier la semaine avec Flōra</li>
+                            <li><strong>Journal :</strong> Écrire et sauvegarder tes notes</li>
+                        </ul>
+                    </div>
+
+                    <div class="project">
+                        <h4>🚀 Projet final : Ton app personnelle</h4>
+                        <p>Crée une app qui t'est utile AU QUOTIDIEN. Les meilleures apps naissent d'un besoin réel.</p>
+                        <p style="margin-top: 10px;">
+                            <strong>Minimum requis :</strong>
+                        </p>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>HTML + CSS fonctionnels</li>
+                            <li>Au moins 3 fonctions JavaScript</li>
+                            <li>Sauvegarder et récupérer les données</li>
+                            <li>Interface propre et responsive</li>
+                        </ul>
+                        <div class="skills">
+                            <span class="skill">HTML</span>
+                            <span class="skill">CSS</span>
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">DOM</span>
+                            <span class="skill">localStorage</span>
+                            <span class="skill">Créativité</span>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        C'est TON projet. Fais ce qui te plaît. Partage-le ensuite sur GitHub !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary">
+            <h2>📊 Récapitulatif de ton parcours</h2>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">12</div>
+                    <div class="label">Semaines</div>
+                </div>
+                <div class="stat">
+                    <div class="number">6</div>
+                    <div class="label">Projets</div>
+                </div>
+                <div class="stat">
+                    <div class="number">8</div>
+                    <div class="label">Concepts clés</div>
+                </div>
+                <div class="stat">
+                    <div class="number">∞</div>
+                    <div class="label">Possibilités</div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--sage-green); margin-bottom: 15px;">Ce que tu sauras faire à la fin :</h3>
+            <ul style="list-style: none; color: var(--light-text);">
+                <li style="padding: 8px 0;">✅ Créer une page web de zéro</li>
+                <li style="padding: 8px 0;">✅ Styliser et rendre responsive</li>
+                <li style="padding: 8px 0;">✅ Ajouter de l'interactivité</li>
+                <li style="padding: 8px 0;">✅ Sauvegarder et récupérer des données</li>
+                <li style="padding: 8px 0;">✅ Déboguer quand ça ne fonctionne pas</li>
+                <li style="padding: 8px 0;">✅ Écrire du code propre et maintenable</li>
+                <li style="padding: 8px 0;">✅ Publier tes apps sur le web (GitHub Pages)</li>
+            </ul>
+
+            <div class="tip" style="margin-top: 20px;">
+                Le secret du succès : code un peu chaque jour. 30 minutes > 5h le weekend. Patience et persévérance ! 🌿
+            </div>
+        </div>
+
+        <footer>
+            <h3>📞 Besoin d'aide ?</h3>
+            <p>Bloque-toi sur quelque chose ? C'est NORMAL. C'est là qu'on apprend vraiment.</p>
+            <p style="margin-top: 10px;">
+                Cherche sur Google, regarde le guide, teste avec console.log(). Et n'hésites pas à demander ! 💪
+            </p>
+            <p style="margin-top: 20px; font-style: italic;">
+                Bonne chance, développeuse ! Tu vas réussir. 🌿
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
